@@ -1,0 +1,34 @@
+{
+ :modules ["phx_regression_telesales",
+           "phx_regression_websales",
+           "helios",
+           "phoenix",
+           "phx",
+           "core",
+           "dao",
+           "alerts",
+           "batch-webadmin",
+           "ecomm-fivenine",
+           "ecomm-web-util",
+           "json",
+           "ecomm-product-fulfillment-jobs",
+           "ecomm-web-external",
+           "services",
+           "leads",
+           "integration",
+           "ci",
+           "dandb-env-not-set", "
+           dandb-env-set",
+           "it-port-prefix-set",
+           "regression-src",
+           "regression-minimal",
+           "coverage-jacoco",
+           "perftest-set",
+           "whitelablel",
+           "verified",
+           "owl",
+           "mycredit"
+           ]
+ :peters {:weird "foo",
+          :thing "ham"}
+ }
