@@ -115,7 +115,8 @@ Show that this works using the virtual box, rackspace and amazone  providers for
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :min-lein-version "2.0.0"
   :aot :all
-  :main cloudseed.core
+;;  :main cloudseed.core
+  :ring {:handler cloudseed.handler/war-handler :auto-reload? true :auto-refresh true}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :repositories [["private" {:url "s3p://marketwithgusto.repo/releases/" :username :env :passphrase :env}]
@@ -125,12 +126,14 @@ Show that this works using the virtual box, rackspace and amazone  providers for
                  [dsabanin/clj-yaml "0.4.1"]
                  [jenkins "0.1.0-SNAPSHOT"]
                  [crypto-random "1.1.0"]
+                 [clj-webdriver "0.6.0"]
                  [amalloy/ring-gzip-middleware "0.1.3" :exclusions [org.clojure/clojure]]
                  [compojure "1.1.5"] ; Web routing https://github.com/weavejester/compojure
                  [com.taoensso/timbre "2.6.3"] ; Logging
                  [prismatic/plumbing "0.1.1"]
                  [org.clojure/core.async "0.1.242.0-44b1e3-alpha"]
                  [org.clojure/core.match "0.2.0"]
+                 [korma "0.3.0-RC5"] ; ORM
                  [enlive "1.1.4"] ; serverside DOM manipulating
                  [org.clojure/java.jdbc "0.3.0-alpha5"]
                  [mysql/mysql-connector-java "5.1.26"]
@@ -143,23 +146,31 @@ Show that this works using the virtual box, rackspace and amazone  providers for
                  [shoreleave "0.3.0"]
                  [shoreleave/shoreleave-remote "0.3.0"]
                  [shoreleave/shoreleave-remote-ring "0.3.0"]
-                 [org.clojure/tools.cli "0.3.1"]]
+                 [org.clojure/tools.cli "0.3.1"]
+                 [com.palletops/pallet-jclouds "1.7.3"]
+;;                 [org.cloudhoist/pallet-jclouds "1.5.2"]
+                 [org.jclouds/jclouds-all "1.5.5"]
+                 [org.jclouds.driver/jclouds-slf4j "1.4.2"
+                  :exclusions [org.slf4j/slf4j-api]]
+                 [org.jclouds.driver/jclouds-sshj "1.4.2"]
+                 [org.slf4j/jcl-over-slf4j "1.7.3"]
+                 ]
   :plugins [[lein-ancient "0.5.4"]
             [lein-marginalia "0.7.1"]
             [lein-test-out "0.3.0"]
             [lein-ring "0.8.5"]
+            [com.palletops/pallet-lein "0.8.0-alpha.1"]
             [lein-localrepo "0.4.1"]
             [s3-wagon-private "1.1.2"]
             [lein-expectations "0.0.8"]
-            [lein-autoexpect "0.2.5"]
-            ]
-  :profiles  {:dev {:dependencies [[ring-mock "0.1.5"]
+            [lein-autoexpect "0.2.5"]]
+  :profiles  {:pallet {:dependencies [[com.palletops/pallet "0.8.0-RC.9"]]}
+              :dev {:dependencies [[ring-mock "0.1.5"]
                                    [ring/ring-devel "1.2.1"]
                                    [clj-webdriver "0.6.0"]
                                    [lein-autodoc "0.9.0"]
                                    [expectations "1.4.56"]
                                    [org.clojure/tools.trace "0.7.6"]
-                                   [vmfest "0.3.0-rc.1"]]}}
-  )
+                                   [vmfest "0.3.0-rc.1"]]}})
 ;;            [org.thelastcitadel/jenkins-clojure-injector "0.2.1"]
 ;;  :jenkins-inject cloudseed.core/main
