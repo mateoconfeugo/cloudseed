@@ -1,8 +1,3 @@
-cloudseed
-=========
-
-Proof of concept for the build of a businesses infrastructure from scratch.
-
 # Introduction to cloudseed
 
 A comparision agaisnt salt using clojure to show that the idea could be better implemented and in a more dev ops friendly way than the python salt stack way.  Ideas to be developed are using pallet as an orchastration framework and replacing yaml with edn.  Using pallet integrate this system into jenkins a common tool used among dev ops.
