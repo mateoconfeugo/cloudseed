@@ -11,6 +11,12 @@
     TOPOLOGY-WORKERS 3}
    (stormy-topology)))
 
+(defn run! [& {debug "debug" workers "workers" :or {debug "true" workers "2"}}]
+  (doto (LocalCluster.)
+    (.submitTopology "stormy topology"
+                     {TOPOLOGY-DEBUG (Boolean/parseBoolean debug)
+                      TOPOLOGY-WORKERS (Integer/parseInt workers)}
+                                          (stormy-topology))))
 (defn -main
   [name]
   (submit-topology! name))

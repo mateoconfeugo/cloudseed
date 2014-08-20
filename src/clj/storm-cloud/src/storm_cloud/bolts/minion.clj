@@ -2,12 +2,13 @@
   (:require [clojure.string :as string]
             [backtype.storm.clojure :refer [defbolt bolt emit-bolt! ack!]]
             [backtype.storm.config]
-            [cloudseed.fsm.highstate :as hs]
-            [cloudseed.protocols :refer :all]
-            [cloudseed.config :refer [config]]
-            [datomic.api :as d :refer [q db]]))
+;;            [cloudseed.fsm.highstate :as hs]
+;;            [cloudseed.protocols :refer :all]
+;;            [cloudseed.config :refer [config]]
+            [datomic.api :as d :refer [q db]]
+            ))
 
-  (def cfg  (-> config :minion))
+(def cfg  (-> config :minion))
 
 (def settings {:db-host (-> cfg :state-database :host)
                :db-port (-> cfg :state-database :port)
@@ -65,11 +66,12 @@
   {:prepare true}
   [conf context collector]
   (let [processor-fn  (partial process-graph collector)
-        driver (hs/new-highstate {:lowstates []})
+;;        driver (hs/new-highstate {:lowstates []})
         db (db-conn)]
     (bolt
      (prepare [conf context collector])
      (execute [tuple]
               (let [val (.getValue tuple 0)]
-                (processor-fn driver val))
+  ;;              (processor-fn driver val)
+                )
               (ack! collector tuple)))))

@@ -1,7 +1,7 @@
-(ns clj-salt.fsm.operations
+(ns clj-salt.fsm.oper tions
   (:require [pallet.algo.fsm.event-machine :refer :all]
             [pallet.algo.fsm.stateful-fsm :refer [stateful-fsm]]
-            [cloudseed.protocols :refer [FSM]]))
+            [clj-salt.protocols :refer [FSM]]))
 
 (defn run-fsm
   [{:keys [graph] :as args}]

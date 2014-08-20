@@ -109,3 +109,98 @@ Some things that makes dev-ops engineer mad are
 Steps
 
 Show that this works using the virtual box, rackspace and amazone  providers for our applications.
+
+Just as pallet uses ssh and bash underneath the cloudseed project rest upon pallet.
+Pallet can be used for the following
+
+* VM Provisioning
+* Configuration Management
+* Deployment
+* Orchestration
+
+Provides abstraction over OS, roles, clusters, etc
+
+Push model
+Broader scope then chef and puppet
+capistrano, funk, ansible
+but provides more
+
+* develop on local
+* setup integration test server
+* create staging environment
+* create a production environment
+
+How do we make all these services composable?
+
+How do we right environment neutral code, avoiding conditions that triggered off the environment?
+
+* Pallet Abstractions
+Not defining what are servers are going to look like - rather,
+We define a function that will define  how the servers will be created.
+
+We want to achieve where we are just doing with clojure code
+
+Its one thing to build a cluster its another thing to operate.
+Pallet allows you to introgate the cluster and then use this infromation in subsequent steps.
+
+Understanding what to put where when using the pallet library is key to using pallet to its best effect
+
+* When
+- Phases
+* Who
+- roles
+* Where
+- envrionment
+* What
+- group spec
+* How
+- server spec
+
+** Environment
+   *** Levels
+   group
+   globally
+   specific compute service  have environment specific to a particular service
+** Seperable Services - How do we decide what gets run where?
+
+** Roles
+   Roles are a clojure set that can be added to:
+   - group-spec
+
+can specify the roles with lein
+
+** Phases - are just named functions
+
+   current-settings->fns->plan
+   lift
+
+   Each phase is synchronous across all the servers and will wait for each server to complete the phase before moving on.
+   For each phase a plan is generated.  This plan is created by a function called lift that takes the current state of a node a the plan functions.
+   This plan is created for each node and from that plan a set of scripts is generated.
+
+   plan->desired-settings
+   exec
+
+   Second part is the execution of the plans on the nodes
+
+
+** Group Specs
+   Aggregate the server specs that will be applied to a node
+
+Wiring up the services
+
+* Setting Phases
+  No side effects on the nodes.  Pallet encourages the use of the settings phase
+  At the end you have a map that contains all the information for configuring that service
+
+  Can use these settings when applying functions to nodes
+
+  You can add roles to server specs.
+
+** Crate
+   Crate is a configurable set of plans that are related to configuring a particular service
+
+** Plans
+   High level sequence of actions
+
+** Nodespec

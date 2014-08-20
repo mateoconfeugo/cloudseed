@@ -5,7 +5,7 @@
   (:use [backtype.storm bootstrap testing])
   (:require [storm-cloud.config :refer [config]]
             [storm-cloud.bolts.minion :refer [minion-service]]
-            [backtype.storm.clojure :refer [topology spout-spec bolt-spec]])
+            [backtype.storm.clojure :refer [spout-spec bolt-spec]])
   (:gen-class))
 
 (defn mk-topology []

@@ -48,15 +48,15 @@
                   :exclusions [org.slf4j/slf4j-api]]
                  [org.jclouds.driver/jclouds-sshj "1.6.0"]
                  [org.slf4j/jcl-over-slf4j "1.7.7"]]
-  :plugins [[lein-ancient "0.5.4"]
-            [lein-marginalia "0.7.1"]
-            [lein-test-out "0.3.0"]
-            [lein-ring "0.8.5"]
-            [com.palletops/pallet-lein "0.8.0-alpha.1"]
-            [lein-localrepo "0.4.1"]
-            [s3-wagon-private "1.1.2"]
-            [lein-expectations "0.0.8"]
-            [lein-autoexpect "0.2.5"]]
+  :plugins [[lein-ancient "0.5.4"]  ; Keep packages upto date
+            [lein-marginalia "0.7.1"] ; Literate programming documentation generation
+            [lein-test-out "0.3.0"] ; Runs all tests and outputs to a file in junit XML or TAP format
+            [lein-ring "0.8.5"] ; launch ring based application
+            [com.palletops/pallet-lein "0.8.0-alpha.1"] ; Perform CRM/Orchestration task from command line
+            [lein-localrepo "0.4.1"] ; Use local jar repository
+            [s3-wagon-private "1.1.2"] ; Push jar to s3 based repository
+            [lein-expectations "0.0.8"] ; Run the expectations based tests
+            [lein-autoexpect "0.2.5"]] ; Continuously run the expectations based tests
   :profiles  {:pallet {:dependencies [[com.palletops/pallet "0.8.0-RC.9"]]}
               :dev {:dependencies [[ring-mock "0.1.5"]
                                    [ring/ring-devel "1.3.0"]

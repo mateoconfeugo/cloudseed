@@ -278,3 +278,7 @@ li a {
 #header nav a {
     padding: 30px;
 }
+
+#logo  {
+    background-color: green;
+}

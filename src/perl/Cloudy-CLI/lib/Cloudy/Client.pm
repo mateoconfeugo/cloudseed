@@ -1,31 +1,32 @@
-package Cloudy::Client
+package Cloudy::Client;
 # ABSTRACT:  Interact with the orcestration topology distributing the state and highstate function graphs
 use Moose;
 use File::Spec::Functions qw(catfile catdir);
 use Net::Kestrel;
 use Cloudy::Configuration;
 
-with 'Cloudy::DB';
+#with 'Cloudy::DB';
 
 has config => (is=>'rw', lazy_build=>1);
-has command_queue => (is=>'rw', lazy_build=>1);
+has command_queue => (is=>'rw', isa=>'Str');
 has results_queue => (is=>'rw', lazy_build=>1);
 has queue_manager => (is=>'rw', lazy_build=>1);
 
 sub highstate {
     my ($self, $args) = @_;
     my $cmd = $args->{cmd};
-    $self->queue_manger->put($self-command_queue, $cmd);
+    my $result = $self->queue_manager->put($self->command_queue, $cmd);
+    return $result;
 }
 
 sub _build_config { return Cloudy::Configuration->new() }
 sub _build_queue_manager { return Net::Kestrel->new; }
 
 sub run {
-  my $cfg = Bailout::Configuration->new();
-  my $api = Cloudy::Client->new();
-  my $args = {};
-  $api->highstate($args);
+  my $api = Cloudy::Client->new({command_queue=>'spam'});
+  my $args = {cmd=>"salt 'somebox' state.highstate"};
+  my $result = $api->highstate($args);
+  return result;
 }
 
 run() unless caller;

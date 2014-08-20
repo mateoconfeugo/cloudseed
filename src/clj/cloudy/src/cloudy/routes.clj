@@ -10,7 +10,7 @@
 (defroutes app-routes
 ;;  (c-route/resources "/")
   (c-route/resources "/design/" {:root "templates"})
-  (c-route/resources "/design/css/" {:root "public/css"})
+  (c-route/resources "/design/css" {:root "public/css"})
   (c-route/resources "/css/" {:root "public/css"})
   (c-route/resources "/js/" {:root "public/js"})
   (c-route/not-found "404 Page not found."))

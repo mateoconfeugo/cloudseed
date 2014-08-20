@@ -5,6 +5,7 @@
             [ring.server.standalone :as ring-server])
   (:gen-class))
 
+
 ;; You'll want to do something like: `(defonce server (start-server))`
 (defn start-server
   "used for starting the server in development mode from REPL"
@@ -39,3 +40,12 @@
         server-fn (server-starters mode-kw)
         server (server-fn)]
     server))
+
+
+
+(comment
+(def test-port "7779")
+(def test-server (start-server test-port))
+(stop-server test-server)
+(.stop test-server)
+)
