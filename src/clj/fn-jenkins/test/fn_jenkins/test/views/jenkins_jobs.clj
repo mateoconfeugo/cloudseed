@@ -25,12 +25,10 @@
                                          :scms "git@github.com:mateoconfeugo/cloudseed.git"))})
 
 
-(def tf ((plumbing.graph/eager-compile test-data-graph) nil))
-(:build-type  (-> tf :shell-opts))
+(def tf ((eager-compile test-data-graph) nil))
+(expect (-> tf :shell-job-xml)
+        (slurp (format "resources/templates/job/%s.xml" "shell-job")))
 
-(expect (-> tf :shell-job-xml) (slurp (format "resources/templates/job/%s.xml" "shell-job")))
-(def opts (-> tf :shell-opts))
-(type opts)
-(shell-job opts)
-(enlive/xml-emit shell-job opts)
-(enlive/xml-emit output-build-for (-> tf :shell-opts))
+;;(shell-job opts)
+;;(enlive/xml-emit shell-job opts)
+;;(enlive/xml-emit output-build-for (-> tf :shell-opts))

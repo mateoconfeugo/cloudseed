@@ -7,10 +7,10 @@
          [pallet.thread-expr :as thread-expr]
          [pallet.utils :as utils]
          [fn-jenkins.jobs.cli]
-         [fn-jenkins.jobs.utility-operations]
          [fn-jenkins.jobs.config])
   (:require [pallet.stevedore :as stevedore]
             [pallet.utils :as utils]
+            [fn-jenkins.jobs.utility-operations :refer [path-for]]
             [clojure.contrib.prxml :as prxml]
             [net.cgrand.enlive-html :as xml]
             [clojure.string :as string]))

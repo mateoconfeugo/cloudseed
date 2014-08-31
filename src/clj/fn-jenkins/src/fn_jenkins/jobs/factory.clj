@@ -8,18 +8,13 @@
               [clojure.xml :as xml]
               [clojure.pprint :refer [pprint pp]]
               [me.raynes.fs :refer [mkdirs]]
+              [fn-jenkins.jobs.utility-operations :refer [read-config]]
               [shoreleave.server-helpers :refer [safe-read]]
               [clojure.tools.cli :refer [parse-opts]])
     (:gen-class))
 
 ;;(require 'pallet.core.api)
 
-(defn read-config
-  "Read a config file and return it as Clojure Data.  Usually, this is a hashmap"
-  ([]
-     (read-config (str (System/getProperty "user.dir") "/resources/config.edn")))
-  ([config-loc]
-     (safe-read (slurp config-loc))))
 
 (defn read-lines [filename]
   (let [rdr (io/reader filename)]

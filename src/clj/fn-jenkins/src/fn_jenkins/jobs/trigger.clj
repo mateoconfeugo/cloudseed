@@ -15,10 +15,8 @@
    [net.cgrand.enlive-html :as xml]
    [clojure.string :as string]))
 
-(def trigger-tags
-  {:scm-trigger "jenkins.triggers.SCMTrigger"
-   :startup-trigger
-   "org.jvnet.jenkins.plugins.triggers.startup.JenkinsStartupTrigger"})
+(def trigger-tags  {:scm-trigger "jenkins.triggers.SCMTrigger"
+                    :startup-trigger "org.jvnet.jenkins.plugins.triggers.startup.JenkinsStartupTrigger"})
 
 (defmulti trigger-config
   "trigger configuration"

@@ -1,20 +1,19 @@
 (ns fn-jenkins.jobs.publisher
-    (:import
-   org.apache.commons.codec.binary.Base64)
-  (:use  [pallet.actions :as actions]
-         [pallet.config-file.format :as format]
-         [pallet.enlive :as enlive]
-         [pallet.environment-impl]
-         [pallet.thread-expr :as thread-expr]
-         [pallet.utils :as utils]
-         [fn-jenkins.jobs.cli]
-         [fn-jenkins.jobs.utility-operations])
-         (:require
+  (:import org.apache.commons.codec.binary.Base64)
+  (:require
+   [fn-jenkins.jobs.utility-operations :refer [path-for truefalse]]
    [pallet.stevedore :as stevedore]
    [pallet.utils :as utils]
    [clojure.contrib.prxml :as prxml]
    [net.cgrand.enlive-html :as xml]
-   [clojure.string :as string]))
+   [clojure.string :as string]
+   [pallet.actions :as actions]
+   [pallet.config-file.format :as format]
+   [pallet.enlive :as enlive]
+   [pallet.environment-impl]
+   [pallet.thread-expr :as thread-expr]
+   [pallet.utils :as utils]
+   [fn-jenkins.jobs.cli]))
 
 (defmulti publisher-config
   "Publisher configuration"
