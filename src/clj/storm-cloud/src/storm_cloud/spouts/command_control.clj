@@ -1,0 +1,15 @@
+(ns storm-cloud.spouts.command-control
+  (:require [backtype.storm [clojure :refer [defspout spout emit-spout!]]]))
+
+(defspout command-control ["type"]
+  [conf context collector]
+  (let [stormys [:regular :bizarro]]
+    (spout
+     (nextTuple []
+       (Thread/sleep 1000)
+       (emit-spout! collector [(rand-nth stormys)]))
+     (ack [id]
+        ;; You only need to define this method for reliable spouts
+        ;; (such as one that reads off of a queue like Kestrel)
+        ;; This is an unreliable spout, so it does nothing here
+        ))))

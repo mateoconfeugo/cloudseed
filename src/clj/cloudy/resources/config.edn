@@ -1,0 +1,46 @@
+{
+ ;; Core config
+ ;; -----------
+ :mgmt-port 7090
+ :mgmt-dsn ""
+ :mgmt-log "logs/mgmt.log"
+ ;; Sessions and Cookies
+ ;; --------------------
+ :cookie-name ""
+ :session-key ""
+ :session-max-age-seconds 1209600
+ :graphs {:top {}
+          :env {}
+          :roles []
+          :ci {
+               :jenkins {
+                         :packages [:jenkins :jenkins-plugins:dev-ops-mgmt]
+                         :jobs [
+                                {
+                                 :install_app {
+                                                :name "mgmt-start"
+                                                :template "freeform"
+                                                :builder {:shell "lein ring server-headless"}
+                                                }
+                                  :deploy_app {
+                                               :name "mgmt-deploy"
+                                               :template "freeform"
+                                               :builder {:shell "lein with-profile deploy private"}
+                                               }
+                                  :test_app {
+                                             :name "mgmt-deploy"
+                                             :template "freeform"
+                                             :builder {:shell "lein with-profile deploy private"}
+                                             }
+                                  :rollback_app {
+                                                 :name "mgmt-deploy"
+                                                 :template "freeform"
+                                                 :builder {:shell "lein with-profile deploy private"}
+                                                 }
+
+                                  }
+                                 ]
+                         }
+               }
+          }
+ }
