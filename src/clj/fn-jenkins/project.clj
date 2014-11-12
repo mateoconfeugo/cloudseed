@@ -1,5 +1,5 @@
 (defproject fn-jenkins "0.1.0"
-  :description "Simple program to deploy and manipulate jenkins jobs dsl to the job server"
+  :description "Simple program to deploy and manipulate jenkins jobs via clojure to the job server"
   :url ""
   :min-lein-version "2.0.0"
   :aot :all
